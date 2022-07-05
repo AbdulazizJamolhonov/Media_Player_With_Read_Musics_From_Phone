@@ -2,10 +2,12 @@ package developer.abdulaziz.mymediaplayer
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Parcel
 import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,8 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding
     private lateinit var mediaPlayer: MediaPlayer
     private var handler = Handler()
+
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
@@ -24,6 +28,14 @@ class MainActivity2 : AppCompatActivity() {
         binding.apply {
 
             start(MyObject.position)
+            val playBackParams = mediaPlayer.playbackParams
+            playBackParams.speed = 1F
+            playBackParams.pitch = 1F
+            playBackParams.describeContents()
+            playBackParams.allowDefaults()
+            playBackParams.audioFallbackMode = 2
+            playBackParams.writeToParcel(Parcel.obtain(), 2)
+            mediaPlayer.playbackParams = playBackParams
 
             menu.setOnClickListener { finish() }
             imageForeground.setOnClickListener {
