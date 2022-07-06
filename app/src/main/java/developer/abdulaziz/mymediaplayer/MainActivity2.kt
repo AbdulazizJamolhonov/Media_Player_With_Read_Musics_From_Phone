@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
+import android.media.PlaybackParams
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -28,14 +29,11 @@ class MainActivity2 : AppCompatActivity() {
         binding.apply {
 
             start(MyObject.position)
-            val playBackParams = mediaPlayer.playbackParams
-            playBackParams.speed = 1F
-            playBackParams.pitch = 1F
-            playBackParams.describeContents()
-            playBackParams.allowDefaults()
-            playBackParams.audioFallbackMode = 2
-            playBackParams.writeToParcel(Parcel.obtain(), 2)
-            mediaPlayer.playbackParams = playBackParams
+//            val playBackParams = mediaPlayer.playbackParams
+//            playBackParams.speed = 1F
+//            playBackParams.pitch = 1F
+//            playBackParams.audioFallbackMode = PlaybackParams.AUDIO_FALLBACK_MODE_DEFAULT
+//            mediaPlayer.playbackParams = playBackParams
 
             menu.setOnClickListener { finish() }
             imageForeground.setOnClickListener {
